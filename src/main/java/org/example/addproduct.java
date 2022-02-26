@@ -11,10 +11,8 @@ import java.util.concurrent.TimeUnit;
 public class addproduct {
     public static void main(String[] args) {
         String productName = "Электроакустический бас BATON ROUGE X11S/BSCE";
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--blink-settings=imagesEnabled=false");
 
-        WebDriver webDriver = WebDriverManager.chromedriver().capabilities(chromeOptions).create();
+        WebDriver webDriver = WebDriverManager.chromedriver().create();
 
         webDriver.get("https://pop-music.ru/");
         webDriver.manage().window().setSize(new Dimension(1500, 1100));
@@ -33,7 +31,7 @@ public class addproduct {
                         .getText().equals("Электроакустический бас BATON ROUGE X11S/BSCE"))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("productName"));
-        selectedProduct.findElement(By.className("product-card__btn")).click();
+        selectedProduct.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[5]/a/span")).click();
 
         webDriver.findElement(By.xpath("//*[contains(text(),'Перейти в корзину')]")).click();
 

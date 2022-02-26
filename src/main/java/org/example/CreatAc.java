@@ -31,7 +31,7 @@ public class CreatAc
 
         Thread.sleep(5000);
 
-        athoPopap.findElement(By.xpath("//*[@id=\"reg-form\"]/div[2]/div[2]/div/input")).sendKeys("cokone1569@sueshaw.com");
+        athoPopap.findElement(By.xpath("//*[@id=\"reg-form\"]/div[2]/div[2]/div/input")).sendKeys("deyax95823@submic.com");
         athoPopap.findElement(By.xpath("//*[@id=\"reg-form\"]/div[2]/div[3]/div/input")).sendKeys("Tartii1234");
         athoPopap.findElement(By.xpath("//*[@id=\"reg-form\"]/div[2]/div[4]/div/input")).sendKeys("Tartii1234");
         athoPopap.findElement(By.xpath("//*[@id=\"reg-form\"]/div[2]/div[5]/button")).click();

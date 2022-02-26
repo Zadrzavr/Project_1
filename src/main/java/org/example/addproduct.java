@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class addproduct {
     public static void main(String[] args) {
-        String productName = "Электроакустический бас BATON ROUGE X11S/BSCE";
+        String productName = "Бас-гитара CORT AB850F BK W_BAG";
 
         WebDriver webDriver = WebDriverManager.chromedriver().create();
 
@@ -28,10 +28,10 @@ public class addproduct {
         List<WebElement> products = webDriver.findElements(By.xpath("//div[@class='product-card ']"));
         WebElement selectedProduct = products.stream()
                 .filter(product -> product.findElement(By.xpath(".//a[@class='product-card__name']"))
-                        .getText().equals("Электроакустический бас BATON ROUGE X11S/BSCE"))
+                        .getText().equals("Бас-гитара CORT AB850F BK W_BAG"))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("productName"));
-        selectedProduct.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[5]/a/span")).click();
+        selectedProduct.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/div[5]/a")).click();
 
         webDriver.findElement(By.xpath("//*[contains(text(),'Перейти в корзину')]")).click();
 

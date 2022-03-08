@@ -1,20 +1,27 @@
 package org.example;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
-public class addproduct {
-    public static void main(String[] args) {
-        String productName = "Бас-гитара CORT AB850F BK W_BAG";
+import static org.assertj.core.api.Assertions.assertThat;
 
-        WebDriver webDriver = WebDriverManager.chromedriver().create();
+public class addproduct extends BaseTest {
+
+    @ParameterizedTest
+    @ValueSource(strings = {"Бас-гитара CORT AB850F BK W_BAG", "Электроакустический бас BATON ROUGE X11S/BSCE-BT"})
+    void addProductTest(String productName) {
 
         webDriver.get("https://pop-music.ru/");
-        webDriver.manage().window().setSize(new Dimension(1500, 1100));
+        webDriver.manage().window().setSize(new Dimension(2000, 1500));
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         new Actions(webDriver)
@@ -30,17 +37,16 @@ public class addproduct {
                         .getText().equals("Бас-гитара CORT AB850F BK W_BAG"))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("productName"));
-        selectedProduct.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/div[5]/a")).click();
+        selectedProduct.findElement(By.className("product-card__btn")).click();
 
         webDriver.findElement(By.xpath("//*[contains(text(),'Перейти в корзину')]")).click();
 
-        System.out.print("Actual products: ");
-        webDriver.findElement(By.className("cart-table"))
+        List<String> actualProductsInCart = webDriver.findElement(By.className("cart-table"))
                 .findElements(By.xpath("./div"))
-                .forEach(product -> System.out.print(product.findElement(By.className("cart-table__name")).getText() + " "));
-        System.out.println();
-        System.out.println("Expected products: " + productName);
+                .stream()
+                .map(product -> product.findElement(By.className("cart-table__name")).getText())
+                .collect(Collectors.toList());
 
-        webDriver.quit();
+        assertThat(actualProductsInCart).containsExactlyInAnyOrder(productName);
     }
 }

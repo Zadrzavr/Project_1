@@ -1,5 +1,6 @@
 package org.example;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
@@ -13,6 +14,7 @@ import java.util.List;
 public class chernovik extends BaseTest {
 
     @Test
+    @Step("настройка ползунка цены")
     void priceFilterTest() {
         webDriver.get("https://pop-music.ru/catalog/gitarnaya-furnitura/");
         int startPrice = Integer.parseInt(webDriver.findElement(By.id("arrFilterElement_P1_MIN")).getAttribute("value").replaceAll("([^0-9]*)", ""));

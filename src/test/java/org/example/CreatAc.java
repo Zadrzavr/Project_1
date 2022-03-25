@@ -1,5 +1,6 @@
 package org.example;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -10,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class CreatAc extends BaseTest {
 
     @Test
+    @Step("создание нового аккаунта")
     void CreatAc(){
 
         webDriver.get("https://pop-music.ru/");

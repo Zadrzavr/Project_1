@@ -1,5 +1,6 @@
 package org.example;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
@@ -10,8 +11,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+@DisplayName("Корзина")
 public class addEverythingforguitars extends BaseTest {
     @Test
+    @DisplayName("добавление товара в корзину")
     void priceFilterTest() {
         webDriver.get("https://pop-music.ru/catalog/gitarnyie-aksessuaryi/vertushki-dlya-strun/");
         int startPrice = Integer.parseInt(webDriver.findElement(By.id("arrFilterElement_P1_MIN")).getAttribute("value").replaceAll("([^0-9]*)", ""));

@@ -1,15 +1,19 @@
 package org.example;
 
-import io.qameta.allure.Step;
+import io.qameta.allure.Feature;
+import jdk.jfr.Description;
 import org.example.Pages.Block.LoginPopup;
 import org.example.Pages.MainPage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-
+@DisplayName("Авторизация")
 public class auth extends BaseTest {
 
     @Test
-    @Step("вход в аккаунт")
+    @DisplayName("вход в аккаунт")
+    @Description("успешная авторизация")
+    @Feature("Авторизация на сайте")
     void accountlogin() {
        new MainPage(webDriver)
                .getHeader()
@@ -19,7 +23,7 @@ public class auth extends BaseTest {
     }
 
     @Test
-    @Step("проверка пароля")
+    @DisplayName("Авторизация:негативый сценарий: неверный пароль")
     void incorrectPasswordTest() {
         LoginPopup loginPopup = new MainPage(webDriver)
                 .getHeader()

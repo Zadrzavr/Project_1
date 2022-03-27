@@ -1,6 +1,7 @@
 package org.example;
 
-import io.qameta.allure.Step;
+import jdk.jfr.Description;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
@@ -11,10 +12,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+@DisplayName("Фильтр цены")
 public class chernovik extends BaseTest {
 
     @Test
-    @Step("настройка ползунка цены")
+    @DisplayName("настройка ползунка цены")
+    @Description("настройка ползунка цены на сайте")
     void priceFilterTest() {
         webDriver.get("https://pop-music.ru/catalog/gitarnaya-furnitura/");
         int startPrice = Integer.parseInt(webDriver.findElement(By.id("arrFilterElement_P1_MIN")).getAttribute("value").replaceAll("([^0-9]*)", ""));

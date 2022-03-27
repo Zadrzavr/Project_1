@@ -1,5 +1,6 @@
 package org.example.Pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +18,7 @@ public class ProductPage extends BasePage {
         super(webDriver);
     }
 
+    @Step("Добавить товар {productName} в корзину")
     public ProductPage selectProduct(String productName) {
         List<WebElement> products = webDriver.findElements(By.xpath("//div[@class='product-card ']"));
         WebElement selectedProduct = products.stream()
@@ -28,6 +30,7 @@ public class ProductPage extends BasePage {
         return this;
     }
 
+    @Step("Перейти в корзину")
     public CartPage goToCart() {
         goToCartButton.click();
         return new CartPage(webDriver);

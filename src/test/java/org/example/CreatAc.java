@@ -1,6 +1,7 @@
 package org.example;
 
-import io.qameta.allure.Step;
+import jdk.jfr.Description;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -8,10 +9,12 @@ import org.openqa.selenium.WebElement;
 
 import java.util.concurrent.TimeUnit;
 
+@DisplayName("Создание Аккаунта")
 public class CreatAc extends BaseTest {
 
     @Test
-    @Step("создание нового аккаунта")
+    @DisplayName("Создание нового аккаунта")
+    @Description("создание нового аккаунта на сайте")
     void CreatAc(){
 
         webDriver.get("https://pop-music.ru/");
@@ -19,6 +22,7 @@ public class CreatAc extends BaseTest {
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         webDriver.findElement(By.xpath("//div[@class='header__links']//a[div[text()='Войти']]")).click();
+
 
 
 
